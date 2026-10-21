@@ -1,0 +1,527 @@
+/* =========================================
+   1. 전체 페이지
+========================================= */
+.application-form-page {
+    min-height: calc(100vh - 80px);
+    background: #f5f6f8;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 36px 24px;
+    box-sizing: border-box;
+}
+
+/* =========================================
+   2. 메인 컨테이너
+========================================= */
+.application-form-container {
+    width: 100%;
+    max-width: 1100px;
+    min-height: 650px;
+
+    background: #ffffff;
+    border: 1px solid #d3d3ca;
+    border-radius: 16px;
+
+    display: flex;
+    flex-direction: column;
+
+    overflow: hidden;
+    box-sizing: border-box;
+
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
+}
+
+/* =========================================
+   3. 상단 헤더
+========================================= */
+.application-form-header {
+    height: 64px;
+    min-height: 64px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+    border-bottom: 1px solid #d3d3ca;
+}
+
+.application-form-header strong {
+    font-size: 18px;
+    font-weight: 700;
+    color: #222;
+}
+
+.application-form-header button {
+    position: absolute;
+    left: 24px;
+
+    border: none;
+    background: transparent;
+
+    color: #999;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.application-form-header button:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+/* =========================================
+   4. 진행 바
+========================================= */
+.application-form-progress {
+    width: 100%;
+    height: 4px;
+    background: #e8e8e5;
+}
+
+.application-form-progress div {
+    width: 50%;
+    height: 100%;
+    background: #9ca8bd;
+}
+
+/* =========================================
+   5. 본문 영역 - PC 2열 구성
+========================================= */
+.application-form-content {
+    flex: 1;
+
+    padding: 40px 60px 28px;
+
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 32px;
+
+    align-content: start;
+}
+
+/* 본문 제목과 설명은 전체 너비 */
+.application-form-step,
+.application-form-content h2,
+.application-form-description {
+    grid-column: 1 / -1;
+}
+
+.application-form-step {
+    margin: 0 0 12px;
+    font-size: 13px;
+    color: #777;
+}
+
+.application-form-content h2 {
+    margin: 0 0 8px;
+    font-size: 22px;
+    font-weight: 700;
+    color: #222;
+}
+
+.application-form-description {
+    margin: 0 0 25px;
+    font-size: 13px;
+    line-height: 1.7;
+    color: #777;
+}
+
+/* =========================================
+   6. 예상 한도 및 금리 안내
+========================================= */
+.application-form-limit-info {
+    grid-column: 1;
+    grid-row: 4;
+
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    padding: 20px;
+    margin-bottom: 26px;
+
+    background: #f4f6fa;
+    border: 1px solid #e2e7f0;
+    border-radius: 10px;
+
+    box-sizing: border-box;
+}
+
+.application-form-limit-info span {
+    font-size: 13px;
+    color: #666;
+}
+
+.application-form-limit-info strong {
+    font-size: 26px;
+    font-weight: 700;
+    color: #355b9e;
+}
+
+/* =========================================
+   7. 공통 입력 필드
+========================================= */
+.application-form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    margin-bottom: 26px;
+    min-width: 0;
+}
+
+.application-form-field label {
+    font-size: 15px;
+    font-weight: 600;
+    color: #333;
+}
+
+.application-form-field small {
+    font-size: 12px;
+    line-height: 1.5;
+    color: #888;
+}
+
+/* 첫 번째 입력 필드: 희망 금액 */
+.application-form-field:nth-of-type(2) {
+    grid-column: 1;
+}
+
+/* 두 번째 입력 필드: 대출 기간 */
+.application-form-field:nth-of-type(3) {
+    grid-column: 2;
+    grid-row: 4 / span 2;
+}
+
+/* =========================================
+   8. 희망 대출 금액 입력
+========================================= */
+.application-form-money {
+    width: 100%;
+    height: 50px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 14px;
+
+    border: 1px solid #d2d2cb;
+    border-radius: 8px;
+    background: #f0f0ee;
+
+    box-sizing: border-box;
+}
+
+.application-form-money:focus-within {
+    border-color: #4169aa;
+    background: #ffffff;
+}
+
+.application-form-money input {
+    flex: 1;
+    min-width: 0;
+    height: 100%;
+
+    padding: 0;
+    border: none;
+    outline: none;
+
+    background: transparent;
+    font-size: 15px;
+    color: #333;
+}
+
+.application-form-money input::placeholder {
+    color: #999;
+}
+
+.application-form-money span {
+    font-size: 14px;
+    color: #777;
+}
+
+/* =========================================
+   9. 대출 기간 선택 버튼
+========================================= */
+.application-form-term-buttons {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+}
+
+.application-form-term-buttons button {
+    height: 50px;
+
+    border: 1px solid #d2d2cb;
+    border-radius: 8px;
+
+    background: #ffffff;
+    color: #444;
+
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.application-form-term-buttons button:hover:not(:disabled) {
+    border-color: #4169aa;
+    background: #f5f8ff;
+}
+
+.application-form-term-buttons button.selected {
+    border-color: #4169aa;
+    background: #eef3fc;
+    color: #355b9e;
+    font-weight: 700;
+}
+
+.application-form-term-buttons button:disabled {
+    background: #f0f0ee;
+    color: #aaa;
+    cursor: not-allowed;
+}
+
+/* =========================================
+   10. 대출 기간 직접 입력
+========================================= */
+.application-form-term-input {
+    width: 100%;
+    height: 50px;
+
+    padding: 0 14px;
+
+    border: 1px solid #d2d2cb;
+    border-radius: 8px;
+
+    background: #f0f0ee;
+    color: #333;
+
+    font-size: 15px;
+    box-sizing: border-box;
+    outline: none;
+}
+
+.application-form-term-input:focus {
+    border-color: #4169aa;
+    background: #ffffff;
+}
+
+.application-form-term-input:disabled {
+    background: #f4f4f4;
+    cursor: not-allowed;
+}
+
+/* =========================================
+   11. 오류 및 저장 메시지
+========================================= */
+.application-form-error {
+    margin: 0;
+    color: #d34444;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.application-form-success {
+    grid-column: 1 / -1;
+
+    margin: 12px 0;
+    color: #267347;
+
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+/* 본문 바로 아래의 오류 메시지도 전체 너비 */
+.application-form-content > .application-form-error {
+    grid-column: 1 / -1;
+}
+
+/* =========================================
+   12. 하단 버튼 영역
+========================================= */
+.application-form-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 16px;
+    padding: 20px 60px 30px;
+    margin-bottom: 25px;
+
+    border-top: 1px solid #f0f0f0;
+
+    flex-shrink: 0;
+    box-sizing: border-box;
+}
+
+.application-form-footer button {
+    height: 52px;
+
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+/* 임시저장 버튼 */
+.application-form-back {
+    flex: 0 0 170px;
+
+    border: 1px solid #c5c5bc;
+    background: #ffffff;
+    color: #555;
+}
+
+.application-form-back:hover:not(:disabled) {
+    background: #f5f5f5;
+}
+
+/* 다음 버튼 */
+.application-form-next {
+    flex: 0 0 260px;
+
+    border: 1px solid #4169aa;
+    background: #4169aa;
+    color: #ffffff;
+}
+
+.application-form-next:hover:not(:disabled) {
+    background: #355b9e;
+}
+
+/* 비활성화 버튼 */
+.application-form-footer button:disabled {
+    background: #e6e6e6;
+    color: #999;
+    border-color: #e6e6e6;
+    cursor: not-allowed;
+}
+
+/* =========================================
+   13. 태블릿 화면
+========================================= */
+@media (min-width: 481px) and (max-width: 768px) {
+
+    .application-form-page {
+        padding: 24px 16px;
+    }
+
+    .application-form-container {
+        max-width: 100%;
+        min-height: 650px;
+    }
+
+    .application-form-content {
+        padding: 28px;
+        grid-template-columns: 1fr;
+    }
+
+    .application-form-limit-info,
+    .application-form-field:nth-of-type(2),
+    .application-form-field:nth-of-type(3) {
+        grid-column: 1;
+        grid-row: auto;
+    }
+
+    .application-form-footer {
+        padding: 18px 28px 24px;
+        margin-bottom: 20px;
+        gap: 12px;
+    }
+
+    .application-form-back {
+        flex: 1;
+    }
+
+    .application-form-next {
+        flex: 2;
+    }
+}
+
+/* =========================================
+   14. 모바일 화면
+========================================= */
+@media (max-width: 480px) {
+
+    .application-form-page {
+        min-height: 100dvh;
+        padding: 0;
+    }
+
+    .application-form-container {
+        max-width: 100%;
+        min-height: 100dvh;
+
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    .application-form-header {
+        height: 52px;
+        min-height: 52px;
+    }
+
+    .application-form-header strong {
+        font-size: 16px;
+    }
+
+    .application-form-header button {
+        left: 18px;
+    }
+
+    .application-form-content {
+        padding: 22px 20px;
+        grid-template-columns: 1fr;
+    }
+
+    .application-form-limit-info,
+    .application-form-field:nth-of-type(2),
+    .application-form-field:nth-of-type(3) {
+        grid-column: 1;
+        grid-row: auto;
+    }
+
+    .application-form-content h2 {
+        font-size: 20px;
+    }
+
+    .application-form-limit-info strong {
+        font-size: 22px;
+    }
+
+    .application-form-money,
+    .application-form-term-input {
+        height: 46px;
+    }
+
+    .application-form-term-buttons button {
+        height: 46px;
+        font-size: 13px;
+    }
+
+    .application-form-footer {
+        padding: 14px 18px 20px;
+        margin-bottom: 20px;
+        gap: 10px;
+    }
+
+    .application-form-footer button {
+        height: 48px;
+        font-size: 13px;
+        min-width: 0;
+    }
+
+    .application-form-back {
+        flex: 1;
+    }
+
+    .application-form-next {
+        flex: 2;
+    }
+}

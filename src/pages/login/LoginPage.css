@@ -1,0 +1,109 @@
+.login-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 24px;
+}
+
+/* 로그인 폼 전체 카드 */
+
+.login-content::before {
+    content: none;
+}
+
+.login-brand {
+    width: 100%;
+    max-width: 480px;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.logo-image {
+    display: block;
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+    margin: 0 auto 20px;
+}
+
+.brand-name {
+    margin: 0 0 10px;
+    font-size: 38px;
+    font-weight: 800;
+    color: #1f2937;
+}
+
+/* 비대면 대출 */
+.brand-subtitle {
+    margin: 0;
+    font-size: 26px;
+    font-weight: 600;
+    color: #475569;
+}
+
+.login-brand h2 {
+    margin: 0;
+    font-size: 26px;
+    font-weight: 700;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 420px;
+    flex: initial;
+    min-height: auto;
+}
+
+.login-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.login-fields input {
+    height: 54px;
+    width: 100%;
+    padding: 0 16px;
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
+    background: white;
+    font-size: 15px;
+}
+
+.login-fields input:focus {
+    outline: none;
+    border-color: #2563eb;
+}
+
+.login-button {
+    width: 100%;
+    height: 54px;
+    margin-top: 24px;
+    border: 0;
+    border-radius: 10px;
+    background: #2563eb;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.login-button:hover {
+    background: #1d4ed8;
+}
+
+.login-error {
+    margin: 14px 0 0;
+    color: #dc2626;
+    font-size: 13px;
+    text-align: center;
+}
+
+.login-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}

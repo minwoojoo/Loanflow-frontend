@@ -1,0 +1,522 @@
+.home-page {
+    display: flex;
+    flex-direction: column;
+
+    /* 공통 Header가 약 64px인 경우 */
+    min-height: calc(100dvh - 64px);
+
+    box-sizing: border-box;
+}
+
+.dashboard-layout {
+    display: flex;
+    flex: 1;
+    min-height: 0;
+    background: #f7f9fc;
+}
+
+/* 사이드바 */
+
+.sidebar {
+    width: 230px;
+    flex-shrink: 0;
+    padding: 32px 16px;
+    background: #ffffff;
+    border-right: 1px solid #e2e8f0;
+}
+
+.sidebar-title {
+    margin: 0 12px 28px;
+    font-size: 18px;
+    color: #172033;
+}
+
+.sidebar button {
+    display: block;
+    width: 100%;
+    margin-bottom: 8px;
+    padding: 13px 16px;
+    border: none;
+    border-radius: 10px;
+    background: transparent;
+    color: #475569;
+    font-size: 15px;
+    text-align: left;
+    cursor: pointer;
+}
+
+.sidebar button:hover {
+    background: #f1f5f9;
+}
+
+.sidebar button.active {
+    background: #eff6ff;
+    color: #2563eb;
+    font-weight: 700;
+}
+
+/* 메인 영역 */
+
+.dashboard-content {
+    flex: 1;
+    min-width: 0;
+    padding: 44px 40px;
+}
+
+.dashboard-content h1 {
+    margin: 0 0 12px;
+    color: #172033;
+    font-size: 28px;
+}
+
+/* 대출 상품 */
+
+.loan-products-heading {
+    margin-bottom: 32px;
+}
+
+.loan-products-heading p {
+    margin: 0;
+    color: #64748b;
+}
+
+.loan-products-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+    max-width: 1100px;
+}
+
+.loan-product-card {
+    display: flex;
+    flex-direction: column;
+    padding: 28px;
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    box-shadow: 0 4px 18px rgba(15, 23, 42, 0.04);
+}
+
+.loan-product-card-top {
+    margin-bottom: 30px;
+}
+
+.loan-product-category {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 20px;
+    background: #eff6ff;
+    color: #2563eb;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.loan-product-card-top h2 {
+    margin: 14px 0 0;
+    color: #172033;
+    font-size: 21px;
+}
+
+.loan-product-details {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-bottom: 22px;
+}
+
+.loan-product-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.loan-product-detail span {
+    color: #64748b;
+    font-size: 14px;
+}
+
+.loan-product-detail strong {
+    color: #172033;
+    font-size: 23px;
+}
+
+.loan-product-description {
+    margin: 0 0 24px;
+    color: #64748b;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.loan-product-apply-button {
+    width: 100%;
+    margin-top: auto;
+    padding: 14px;
+    border: none;
+    border-radius: 10px;
+    background: #2563eb;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.loan-product-apply-button:hover {
+    background: #1d4ed8;
+}
+
+.loan-products-message {
+    padding: 32px;
+    max-width: 1100px;
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    color: #64748b;
+    text-align: center;
+}
+
+.loan-products-error {
+    color: #dc2626;
+}
+
+/* 신청 내역 */
+
+.history-section p {
+    color: #64748b;
+}
+
+/* 내 정보 */
+
+.settings-section {
+    max-width: 900px;
+}
+
+.settings-description {
+    margin: 0 0 28px;
+    color: #64748b;
+}
+
+.settings-card {
+    margin-bottom: 24px;
+    padding: 28px;
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+}
+
+.settings-card h2 {
+    margin: 0;
+    font-size: 19px;
+    color: #172033;
+}
+
+.settings-card > p {
+    color: #64748b;
+    font-size: 14px;
+}
+
+.settings-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 26px;
+}
+
+.settings-edit-button {
+    padding: 9px 16px;
+    border: 1px solid #2563eb;
+    border-radius: 8px;
+    background: white;
+    color: #2563eb;
+    cursor: pointer;
+}
+
+.member-info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px;
+}
+
+.member-info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+.member-info-item span {
+    color: #64748b;
+    font-size: 14px;
+}
+
+.member-info-item strong {
+    color: #172033;
+    font-size: 16px;
+}
+
+.member-edit-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.member-form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.member-form-field label {
+    color: #334155;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.member-form-field input,
+.member-form-field select {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    background: white;
+    font-size: 15px;
+}
+
+.member-form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.member-form-actions button {
+    padding: 11px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.member-cancel-button {
+    border: 1px solid #cbd5e1;
+    background: white;
+    color: #475569;
+}
+
+.member-save-button {
+    border: none;
+    background: #2563eb;
+    color: white;
+}
+
+.settings-error {
+    color: #dc2626;
+    font-size: 14px;
+}
+
+.settings-logout-button {
+    margin-top: 12px;
+    padding: 11px 20px;
+    border: 1px solid #dc2626;
+    border-radius: 8px;
+    background: white;
+    color: #dc2626;
+    cursor: pointer;
+}
+
+@media (max-width: 900px) {
+    .dashboard-layout {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 16px;
+        border-right: none;
+        border-bottom: 1px solid #e2e8f0;
+    }
+
+    .sidebar-title {
+        margin-bottom: 12px;
+    }
+
+    .dashboard-content {
+        padding: 28px 18px;
+    }
+
+    .loan-products-grid,
+    .member-info-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .history-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .history-card {
+        padding: 22px;
+    }
+
+    .history-amount {
+        font-size: 23px;
+    }
+}
+
+
+/* ==========================
+   내 대출 신청 목록
+========================== */
+
+.history-heading {
+    margin-bottom: 30px;
+}
+
+.history-heading h1 {
+    margin: 0 0 12px;
+    color: #172033;
+    font-size: 28px;
+}
+
+.history-heading p {
+    margin: 0;
+    color: #64748b;
+    font-size: 15px;
+}
+
+.history-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+    max-width: 1100px;
+}
+
+.history-card {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    padding: 28px;
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    box-shadow: 0 4px 18px rgba(15, 23, 42, 0.04);
+}
+
+.history-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+
+.history-application-id {
+    color: #64748b;
+    font-size: 13px;
+}
+
+.history-status {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.history-status.approved {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.history-status.rejected {
+    background: #fee2e2;
+    color: #b91c1c;
+}
+
+.history-status.reviewing {
+    background: #dbeafe;
+    color: #1d4ed8;
+}
+
+.history-status.draft {
+    background: #f1f5f9;
+    color: #475569;
+}
+
+.history-product-name {
+    margin: 0;
+    color: #172033;
+    font-size: 18px;
+}
+
+.history-amount {
+    color: #172033;
+    font-size: 26px;
+    font-weight: 700;
+}
+
+.history-card-bottom {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+
+    margin-top: auto;
+    padding-top: 18px;
+    border-top: 1px solid #e2e8f0;
+
+    color: #64748b;
+    font-size: 13px;
+}
+
+.history-message {
+    max-width: 1100px;
+    padding: 32px;
+    box-sizing: border-box;
+
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+
+    color: #64748b;
+    text-align: center;
+}
+
+.history-error {
+    color: #dc2626;
+}
+
+/* 태블릿 및 모바일 */
+@media (max-width: 900px) {
+    .history-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .history-card {
+        padding: 22px;
+    }
+
+    .history-amount {
+        font-size: 23px;
+    }
+}
+
+/* 신청 상세 보기 버튼 */
+.history-detail-button {
+    width: 100%;
+    margin-top: 8px;
+    padding: 12px 16px;
+
+    border: 1px solid #2563eb;
+    border-radius: 10px;
+
+    background: #ffffff;
+    color: #2563eb;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.history-detail-button:hover {
+    background: #eff6ff;
+}

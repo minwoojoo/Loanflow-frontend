@@ -1,0 +1,138 @@
+
+/* =====================================
+   공통 헤더
+===================================== */
+
+.common-header {
+    width: 100%;
+    height: 72px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 40px;
+    box-sizing: border-box;
+
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+/* =====================================
+   LoanFlow 로고 및 홈 이동 버튼
+===================================== */
+
+.header-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 0;
+    border: none;
+    background: transparent;
+
+    font: inherit;
+    color: inherit;
+
+    cursor: pointer;
+
+    transition: opacity 0.2s ease;
+}
+
+/* 로고 이미지 */
+.header-brand img {
+    width: 40px;
+    height: 40px;
+
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+/* LoanFlow 텍스트 */
+.header-brand span {
+    font-size: 26px;
+    font-weight: 700;
+    color: #14233b;
+}
+
+/* 마우스 호버 효과 */
+.header-brand:hover {
+    opacity: 0.75;
+}
+
+/* 키보드 접근성 */
+.header-brand:focus-visible {
+    outline: 2px solid #2563eb;
+    outline-offset: 5px;
+    border-radius: 4px;
+}
+
+/* =====================================
+   헤더 설명 문구
+===================================== */
+
+.header-description {
+    font-size: 14px;
+    font-weight: 400;
+    color: #64748b;
+    white-space: nowrap;
+}
+
+/* =====================================
+   태블릿
+===================================== */
+
+@media (max-width: 768px) {
+    .common-header {
+        height: 64px;
+        padding: 0 24px;
+    }
+
+    .header-brand img {
+        width: 36px;
+        height: 36px;
+    }
+
+    .header-brand span {
+        font-size: 23px;
+    }
+
+    .header-description {
+        font-size: 12px;
+    }
+}
+
+/* =====================================
+   모바일
+===================================== */
+
+@media (max-width: 480px) {
+    .common-header {
+        height: 60px;
+        padding: 0 16px;
+    }
+
+    .header-brand {
+        gap: 8px;
+    }
+
+    .header-brand img {
+        width: 32px;
+        height: 32px;
+    }
+
+    .header-brand span {
+        font-size: 21px;
+    }
+
+    .header-description {
+        font-size: 11px;
+    }
+}
+
+/* 매우 작은 화면 */
+@media (max-width: 360px) {
+    .header-description {
+        display: none;
+    }
+}

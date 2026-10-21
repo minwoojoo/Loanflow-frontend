@@ -1,0 +1,338 @@
+
+/* =====================================
+   대출 신청 상세 페이지 전체
+===================================== */
+
+.loan-detail-page {
+    min-height: calc(100vh - 80px);
+    padding: 40px 24px 64px;
+    background: #f5f7fb;
+    box-sizing: border-box;
+}
+
+.loan-detail-container {
+    width: 100%;
+    max-width: 1050px;
+    margin: 0 auto;
+}
+
+/* =====================================
+   상단 헤더
+===================================== */
+
+.loan-detail-header {
+    margin-bottom: 30px;
+}
+
+.loan-detail-back-button {
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: 22px;
+    padding: 0;
+
+    border: none;
+    background: transparent;
+
+    color: #2563eb;
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.loan-detail-back-button:hover {
+    color: #1d4ed8;
+    text-decoration: underline;
+}
+
+.loan-detail-header h1 {
+    margin: 0 0 10px;
+    color: #172033;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.loan-detail-header p {
+    margin: 0;
+    color: #64748b;
+    font-size: 15px;
+}
+
+/* =====================================
+   공통 카드
+===================================== */
+
+.loan-detail-card {
+    margin-bottom: 22px;
+    padding: 30px;
+
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    background: #ffffff;
+
+    box-shadow: 0 4px 18px rgba(15, 23, 42, 0.04);
+}
+
+.loan-detail-section-title {
+    margin: 0 0 26px;
+    color: #172033;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+/* =====================================
+   신청서 상단 정보
+===================================== */
+
+.loan-detail-summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.loan-detail-application-id {
+    color: #64748b;
+    font-size: 13px;
+}
+
+.loan-detail-summary h2 {
+    margin: 12px 0 0;
+    color: #172033;
+    font-size: 23px;
+    font-weight: 700;
+}
+
+.loan-detail-status {
+    display: inline-block;
+    flex-shrink: 0;
+
+    padding: 8px 15px;
+    border-radius: 20px;
+
+    font-size: 13px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+/* 상태별 스타일 */
+
+.loan-detail-status.draft {
+    background: #f1f5f9;
+    color: #475569;
+}
+
+.loan-detail-status.reviewing {
+    background: #dbeafe;
+    color: #1d4ed8;
+}
+
+.loan-detail-status.approved {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.loan-detail-status.rejected {
+    background: #fee2e2;
+    color: #b91c1c;
+}
+
+/* =====================================
+   신청 상세 정보
+===================================== */
+
+.loan-detail-info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 48px;
+    row-gap: 30px;
+}
+
+.loan-detail-info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-width: 0;
+}
+
+.loan-detail-info-item span {
+    color: #64748b;
+    font-size: 14px;
+}
+
+.loan-detail-info-item strong {
+    color: #172033;
+    font-size: 20px;
+    font-weight: 700;
+    overflow-wrap: anywhere;
+}
+
+/* =====================================
+   진행 이력 타임라인
+===================================== */
+
+.loan-detail-timeline {
+    display: flex;
+    flex-direction: column;
+}
+
+.loan-detail-timeline-item {
+    display: flex;
+    align-items: stretch;
+    gap: 16px;
+    min-height: 75px;
+}
+
+.loan-detail-timeline-marker {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 16px;
+    flex-shrink: 0;
+}
+
+.loan-detail-timeline-dot {
+    display: block;
+    width: 12px;
+    height: 12px;
+    margin-top: 4px;
+
+    border-radius: 50%;
+    background: #2563eb;
+
+    box-shadow: 0 0 0 4px #dbeafe;
+}
+
+.loan-detail-timeline-item:not(:last-child)
+.loan-detail-timeline-marker::after {
+    content: "";
+    width: 2px;
+    flex: 1;
+    margin-top: 10px;
+    background: #dbeafe;
+}
+
+.loan-detail-timeline-content {
+    padding-bottom: 24px;
+}
+
+.loan-detail-timeline-content strong {
+    color: #172033;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.loan-detail-timeline-content p {
+    margin: 8px 0 0;
+    color: #64748b;
+    font-size: 13px;
+}
+
+.loan-detail-progress-message {
+    padding: 15px 18px;
+    margin-top: 12px;
+
+    border-radius: 10px;
+    background: #eff6ff;
+
+    color: #1d4ed8;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* =====================================
+   로딩 및 오류
+===================================== */
+
+.loan-detail-message {
+    padding: 45px 24px;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    background: #ffffff;
+
+    color: #64748b;
+    font-size: 15px;
+    text-align: center;
+}
+
+.loan-detail-error {
+    color: #dc2626;
+}
+
+
+
+/* =====================================
+   작성 중 신청서 이어서 작성
+===================================== */
+
+.loan-detail-action-area {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 24px;
+}
+
+.loan-detail-resume-button {
+    min-width: 200px;
+    padding: 14px 24px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: #2563eb;
+    color: #ffffff;
+
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+
+    transition: background 0.2s ease;
+}
+
+.loan-detail-resume-button:hover {
+    background: #1d4ed8;
+}
+
+
+
+
+
+@media (max-width: 768px) {
+    .loan-detail-page {
+        padding: 24px 16px 40px;
+    }
+
+    .loan-detail-header h1 {
+        font-size: 24px;
+    }
+
+    .loan-detail-card {
+        padding: 22px 20px;
+    }
+
+    .loan-detail-summary {
+        align-items: flex-start;
+    }
+
+    .loan-detail-summary h2 {
+        font-size: 20px;
+    }
+
+    .loan-detail-info-grid {
+        grid-template-columns: 1fr;
+        row-gap: 24px;
+    }
+
+    .loan-detail-info-item strong {
+        font-size: 18px;
+    }
+
+    .loan-detail-action-area {
+        justify-content: stretch;
+    }
+
+    .loan-detail-resume-button {
+        width: 100%;
+    }
+}
+
+

@@ -1,0 +1,507 @@
+/* =========================================
+   1. 전체 페이지
+========================================= */
+.loan-limit-page {
+    min-height: calc(100vh - 80px);
+    background: #f5f6f8;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 36px 24px;
+    box-sizing: border-box;
+}
+
+/* =========================================
+   2. 메인 컨테이너
+========================================= */
+.loan-limit-container {
+    width: 100%;
+    max-width: 1100px;
+    min-height: 650px;
+
+    background: #ffffff;
+    border: 1px solid #d3d3ca;
+    border-radius: 16px;
+
+    display: flex;
+    flex-direction: column;
+
+    overflow: hidden;
+    box-sizing: border-box;
+
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
+}
+
+/* =========================================
+   3. 상단 헤더
+========================================= */
+.loan-limit-header {
+    height: 64px;
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-bottom: 1px solid #d3d3ca;
+    position: relative;
+}
+
+.loan-limit-header strong {
+    font-size: 18px;
+    font-weight: 700;
+    color: #222;
+}
+
+.loan-limit-back {
+    position: absolute;
+    left: 24px;
+
+    border: none;
+    background: none;
+
+    font-size: 30px;
+    color: #999;
+    cursor: pointer;
+}
+
+/* =========================================
+   4. 본문 영역 - PC 2열 구성
+========================================= */
+.loan-limit-content {
+    flex: 1;
+    padding: 36px 48px 24px;
+
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 24px;
+    align-content: start;
+}
+
+/* =========================================
+   5. 공통 입력 필드
+========================================= */
+.loan-limit-field {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    margin-bottom: 24px;
+    min-width: 0;
+}
+
+.loan-limit-field label {
+    font-size: 15px;
+    font-weight: 600;
+    color: #444;
+}
+
+.loan-limit-field input,
+.loan-limit-field select,
+.loan-limit-money {
+    height: 50px;
+    width: 100%;
+
+    border: 1px solid #d2d2cb;
+    border-radius: 8px;
+
+    background: #f0f0ee;
+    box-sizing: border-box;
+
+    padding: 0 14px;
+    font-size: 15px;
+    color: #333;
+}
+
+/* 세 번째 입력 필드: 생년월일 */
+.loan-limit-field:nth-child(3) {
+    grid-column: 1 / -1;
+}
+
+/* =========================================
+   6. 연 소득 입력
+========================================= */
+.loan-limit-money {
+    display: flex;
+    align-items: center;
+}
+
+.loan-limit-money input {
+    border: none;
+    background: transparent;
+
+    padding: 0;
+    min-width: 0;
+    flex: 1;
+
+    outline: none;
+}
+
+.loan-limit-money span {
+    color: #777;
+    font-size: 14px;
+}
+
+/* =========================================
+   7. 내 정보 불러오기 + 한도 조회 버튼
+========================================= */
+.loan-limit-button-group {
+    grid-column: 1 / -1;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+
+    width: 100%;
+    margin: 0 0 28px;
+}
+
+/* 두 버튼 공통 */
+.loan-limit-button-group .loan-limit-profile-button,
+.loan-limit-button-group .loan-limit-check-button {
+    width: 180px;
+    min-width: 0;
+    height: 50px;
+
+    margin: 0;
+    padding: 0 16px;
+
+    box-sizing: border-box;
+    border-radius: 8px;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+/* 내 정보 불러오기 */
+.loan-limit-profile-button {
+    background: #ffffff;
+    color: #2563eb;
+    border: 1px solid #2563eb;
+}
+
+.loan-limit-profile-button:hover:not(:disabled) {
+    background: #eff6ff;
+}
+
+/* 한도 조회하기 */
+.loan-limit-check-button {
+    background: #4169aa;
+    color: #ffffff;
+    border: 1px solid #4169aa;
+}
+
+.loan-limit-check-button:hover:not(:disabled) {
+    background: #355b9e;
+}
+
+/* 버튼 비활성화 */
+.loan-limit-button-group button:disabled {
+    background: #e9e9e6;
+    color: #999;
+    border-color: #d3d3ca;
+    cursor: not-allowed;
+}
+
+/* 회원 정보 조회 오류 */
+.loan-limit-profile-error {
+    grid-column: 1 / -1;
+
+    margin: 0 0 20px;
+    color: #dc2626;
+    font-size: 13px;
+}
+
+/* =========================================
+   8. 한도 조회 결과
+========================================= */
+.loan-limit-result {
+    grid-column: 1 / -1;
+
+    min-height: 180px;
+
+    border: 2px dashed #d2d2c9;
+    border-radius: 10px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 12px;
+    padding: 28px;
+
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.loan-limit-result-label {
+    font-size: 14px;
+    color: #777;
+    margin: 0;
+}
+
+.loan-limit-result strong {
+    font-size: 26px;
+    font-weight: 700;
+    color: #222;
+}
+
+.loan-limit-result p:last-child {
+    font-size: 14px;
+    color: #777;
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* =========================================
+   9. 안내 및 오류 메시지
+========================================= */
+.loan-limit-error {
+    grid-column: 1 / -1;
+
+    color: #d34444;
+    font-size: 13px;
+    margin-top: 14px;
+}
+
+.loan-limit-save-message {
+    grid-column: 1 / -1;
+
+    color: #267347;
+    font-size: 13px;
+    margin-top: 14px;
+}
+
+.loan-limit-notice {
+    grid-column: 1 / -1;
+
+    font-size: 13px;
+    color: #888;
+    line-height: 1.6;
+
+    margin-top: 16px;
+}
+
+/* =========================================
+   10. 하단 버튼 영역
+========================================= */
+.loan-limit-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 16px;
+    padding: 20px 48px 30px;
+
+    margin-bottom: 25px;
+
+    border-top: 1px solid #f0f0f0;
+
+    flex-shrink: 0;
+    box-sizing: border-box;
+}
+
+/* 하단 버튼 공통 스타일 */
+.loan-limit-footer button {
+    height: 52px;
+
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+/* 임시저장 버튼 */
+.loan-limit-save-button {
+    width: 170px;
+    flex-shrink: 0;
+
+    border: 1px solid #c5c5bc;
+    background: #ffffff;
+    color: #555;
+}
+
+.loan-limit-save-button:hover:not(:disabled) {
+    background: #f5f5f5;
+}
+
+/* 이 조건으로 신청하기 버튼 */
+.loan-limit-next-button {
+    width: 260px;
+    flex-shrink: 0;
+
+    border: 1px solid #4169aa;
+    background: #4169aa;
+    color: #ffffff;
+}
+
+.loan-limit-next-button:hover:not(:disabled) {
+    background: #355b9e;
+}
+
+/* 하단 버튼 비활성화 */
+.loan-limit-footer button:disabled {
+    background: #e9e9e6;
+    color: #999;
+    border-color: #d3d3ca;
+    cursor: not-allowed;
+}
+
+/* =========================================
+   11. 태블릿 화면 (481px ~ 768px)
+========================================= */
+@media (min-width: 481px) and (max-width: 768px) {
+
+    .loan-limit-page {
+        padding: 24px 16px;
+    }
+
+    .loan-limit-container {
+        max-width: 100%;
+        min-height: 650px;
+    }
+
+    .loan-limit-content {
+        padding: 28px 28px 20px;
+        grid-template-columns: 1fr;
+    }
+
+    .loan-limit-field:nth-child(3),
+    .loan-limit-button-group,
+    .loan-limit-profile-error,
+    .loan-limit-result,
+    .loan-limit-error,
+    .loan-limit-save-message,
+    .loan-limit-notice {
+        grid-column: 1;
+    }
+
+    .loan-limit-footer {
+        padding: 18px 28px 24px;
+        margin-bottom: 20px;
+        gap: 12px;
+    }
+
+    .loan-limit-save-button {
+        flex: 1;
+        width: auto;
+        min-width: 0;
+    }
+
+    .loan-limit-next-button {
+        flex: 2;
+        width: auto;
+        min-width: 0;
+    }
+}
+
+/* =========================================
+   12. 모바일 화면 (480px 이하)
+========================================= */
+@media (max-width: 480px) {
+
+    .loan-limit-page {
+        min-height: 100dvh;
+        padding: 0;
+    }
+
+    .loan-limit-container {
+        max-width: 100%;
+        min-height: 100dvh;
+
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    .loan-limit-header {
+        height: 52px;
+    }
+
+    .loan-limit-header strong {
+        font-size: 16px;
+    }
+
+    .loan-limit-back {
+        left: 18px;
+    }
+
+    .loan-limit-content {
+        padding: 22px 20px;
+        grid-template-columns: 1fr;
+    }
+
+    .loan-limit-field:nth-child(3),
+    .loan-limit-button-group,
+    .loan-limit-profile-error,
+    .loan-limit-result,
+    .loan-limit-error,
+    .loan-limit-save-message,
+    .loan-limit-notice {
+        grid-column: 1;
+    }
+
+    .loan-limit-field label {
+        font-size: 13px;
+    }
+
+    .loan-limit-field input,
+    .loan-limit-field select,
+    .loan-limit-money {
+        height: 46px;
+        font-size: 14px;
+    }
+
+    /* 모바일에서도 두 버튼 나란히 배치 */
+    .loan-limit-button-group {
+        gap: 10px;
+    }
+
+    .loan-limit-button-group .loan-limit-profile-button,
+    .loan-limit-button-group .loan-limit-check-button {
+        flex: 1;
+        width: 50%;
+        min-width: 0;
+        height: 44px;
+
+        padding: 0 8px;
+        font-size: 13px;
+    }
+
+    .loan-limit-result {
+        min-height: 145px;
+        padding: 16px;
+    }
+
+    .loan-limit-result strong {
+        font-size: 20px;
+    }
+
+    .loan-limit-footer {
+        gap: 10px;
+        padding: 14px 18px 20px;
+        margin-bottom: 20px;
+    }
+
+    .loan-limit-footer button {
+        height: 48px;
+        font-size: 13px;
+        min-width: 0;
+    }
+
+    .loan-limit-save-button {
+        flex: 1;
+        width: auto;
+    }
+
+    .loan-limit-next-button {
+        flex: 2;
+        width: auto;
+    }
+}
