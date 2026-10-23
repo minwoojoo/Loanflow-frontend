@@ -6,6 +6,7 @@ import TermsAgreementPage from "./pages/loan/TermsAgreementPage";
 import LoanLimitPage from "./pages/loan/LoanLimitPage";
 import LoanApplicationFormPage from "./pages/loan/LoanApplicationFormPage";
 import LoanApplicationDetailPage from "./pages/loan/LoanApplicationDetailPage";
+import AdminPage from "./pages/admin/AdminPage.jsx";
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -315,6 +316,15 @@ export default function App() {
         return <LoginPage onLogin={handleLogin} />;
     }
 
+    // 운영자 로그인 시 운영자 전용 화면 표시
+    if (auth.role === "ADMIN"){
+        return (
+            <AdminPage
+                accessToken={auth.accessToken}
+                onLogout={handleLogout}
+            />
+        )
+    }
 
 
     return (

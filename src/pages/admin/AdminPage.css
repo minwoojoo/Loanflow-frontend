@@ -1,0 +1,492 @@
+/* 운영자 전체 레이아웃 */
+.admin-layout {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #f5f7fb;
+    color: #243044;
+}
+
+/* Header와 Footer 사이 */
+.admin-body {
+    display: flex;
+    flex: 1;
+    min-height: 0;
+    width: 100%;
+}
+
+/* 왼쪽 사이드바 */
+.admin-sidebar {
+    width: 240px;
+    flex-shrink: 0;
+    background: #ffffff;
+    border-right: 1px solid #e5eaf0;
+    display: flex;
+    flex-direction: column;
+    padding: 24px 12px;
+}
+
+.admin-sidebar-title {
+    padding: 0 16px 20px;
+    font-size: 15px;
+    font-weight: 700;
+    color: #34435a;
+}
+
+/* 메뉴 */
+.admin-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.admin-menu-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 14px 16px;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    color: #536177;
+    font-size: 14px;
+    text-align: left;
+    cursor: pointer;
+}
+
+.admin-menu-item:hover {
+    background: #f0f4fa;
+}
+
+.admin-menu-item.active {
+    background: #e8f0fc;
+    color: #2157a4;
+    font-weight: 700;
+}
+
+.admin-menu-icon {
+    font-size: 18px;
+    width: 22px;
+    text-align: center;
+}
+
+/* 로그아웃 */
+.admin-sidebar-bottom {
+    margin-top: auto;
+    padding-top: 24px;
+}
+
+.admin-logout-button {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #dde4ed;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #536177;
+    cursor: pointer;
+}
+
+.admin-logout-button:hover {
+    background: #f5f7fa;
+}
+
+/* 오른쪽 메인 영역 */
+.admin-main {
+    flex: 1;
+    min-width: 0;
+    padding: 32px;
+}
+
+/* 페이지 제목 */
+.admin-page-heading {
+    margin-bottom: 28px;
+}
+
+.admin-page-heading h2 {
+    margin: 0 0 8px;
+    font-size: 24px;
+}
+
+.admin-page-heading p {
+    margin: 0;
+    font-size: 14px;
+    color: #788599;
+}
+
+
+
+/* 대시보드 통계 카드 */
+.admin-dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 16px;
+    margin-top: 24px;
+}
+
+.admin-summary-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-top: 3px solid #94a3b8;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.035);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.admin-summary-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+}
+
+.admin-summary-card:nth-child(1) {
+    border-top-color: #2563eb;
+}
+
+.admin-summary-card:nth-child(2) {
+    border-top-color: #94a3b8;
+}
+
+.admin-summary-card:nth-child(3) {
+    border-top-color: #f59e0b;
+}
+
+.admin-summary-card:nth-child(4) {
+    border-top-color: #10b981;
+}
+
+.admin-summary-card:nth-child(5) {
+    border-top-color: #ef4444;
+}
+
+.admin-summary-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #64748b;
+    margin-bottom: 18px;
+}
+
+.admin-summary-value {
+    font-size: 32px;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.admin-summary-value span {
+    font-size: 14px;
+    font-weight: 400;
+    color: #94a3b8;
+}
+
+@media (max-width: 1200px) {
+    .admin-dashboard-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .admin-dashboard-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+
+
+
+/* 대시보드 차트 영역 */
+.admin-dashboard-panels {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.admin-panel {
+    padding: 24px;
+    border: 1px solid #e5eaf0;
+    border-radius: 12px;
+    background: #ffffff;
+}
+
+.admin-panel h3 {
+    margin: 0 0 20px;
+    font-size: 17px;
+}
+
+.admin-placeholder {
+    min-height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #99a4b4;
+    text-align: center;
+}
+
+/* 태블릿 및 모바일 */
+@media (max-width: 900px) {
+    .admin-sidebar {
+        width: 200px;
+    }
+
+    .admin-main {
+        padding: 20px;
+    }
+
+    .admin-dashboard-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .admin-dashboard-panels {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* 대시보드 추후 구현 예정 영역 */
+.admin-dashboard-upcoming {
+    min-height: 250px;
+}
+
+.admin-dashboard-upcoming h3 {
+    font-size: 17px;
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 8px;
+}
+
+.admin-dashboard-upcoming p {
+    font-size: 13px;
+    color: #64748b;
+}
+
+.admin-upcoming-message {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 150px;
+    margin-top: 20px;
+
+    border: 1px dashed #cbd5e1;
+    border-radius: 10px;
+
+    background-color: #f8fafc;
+
+    color: #94a3b8;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+
+
+
+
+/* =====================================
+   대출 신청 목록 조회
+===================================== */
+
+/* 목록 상단 */
+.admin-list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.admin-list-header h3 {
+    margin: 0;
+    font-size: 17px;
+}
+
+.admin-list-header span {
+    color: #68778d;
+    font-size: 14px;
+}
+
+/* 테이블 */
+.admin-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+.admin-table th,
+.admin-table td {
+    padding: 15px 12px;
+    border-bottom: 1px solid #e5eaf0;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+.admin-table th {
+    background: #f5f7fb;
+    color: #536177;
+    font-weight: 600;
+}
+
+.admin-table tbody tr:hover {
+    background: #f8faff;
+}
+
+/* 신청 상태 표시 */
+.admin-status {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.admin-status.draft {
+    background: #f0f1f3;
+    color: #687181;
+}
+
+.admin-status.reviewing {
+    background: #fff3dc;
+    color: #a36a13;
+}
+
+.admin-status.approved {
+    background: #e4f6eb;
+    color: #208455;
+}
+
+.admin-status.rejected {
+    background: #fdeaea;
+    color: #c54040;
+}
+
+/* 상세 조회 버튼 */
+.admin-detail-button {
+    padding: 7px 14px;
+    border: 1px solid #cbdaf0;
+    border-radius: 6px;
+    background: #ffffff;
+    color: #2157a4;
+    cursor: pointer;
+}
+
+.admin-detail-button:hover {
+    background: #edf4ff;
+}
+
+/* 신청서가 없는 경우 */
+.admin-empty {
+    padding: 50px 0;
+    color: #99a4b4;
+    text-align: center;
+}
+
+/* 오류 메시지 */
+.admin-error {
+    color: #d32f2f;
+}
+
+
+
+/* =====================================
+   운영자 대출 신청 상세 조회
+===================================== */
+
+/* 목록으로 돌아가기 */
+.admin-back-button {
+    padding: 10px 16px;
+    margin-bottom: 24px;
+    border: 1px solid #dbe3ef;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #536177;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.admin-back-button:hover {
+    background: #f0f4fa;
+    color: #2157a4;
+}
+
+/* 상세 정보 섹션 */
+.admin-detail-sections {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* 상세 정보 그리드 */
+.admin-detail-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+}
+
+.admin-detail-grid > div {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+}
+
+.admin-detail-grid > div > span {
+    font-size: 13px;
+    color: #788599;
+}
+
+.admin-detail-grid strong {
+    font-size: 15px;
+    font-weight: 600;
+    color: #243044;
+    overflow-wrap: anywhere;
+}
+
+
+
+
+
+/* 모바일 대응 */
+@media (max-width: 600px) {
+    .admin-body {
+        flex-direction: column;
+    }
+
+    .admin-sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #e5eaf0;
+        padding: 12px;
+    }
+
+    .admin-sidebar-title {
+        padding: 8px;
+    }
+
+    .admin-menu {
+        flex-direction: row;
+        overflow-x: auto;
+    }
+
+    .admin-menu-item {
+        width: auto;
+        flex-shrink: 0;
+        white-space: nowrap;
+        padding: 10px;
+    }
+
+    .admin-sidebar-bottom {
+        margin-top: 8px;
+        padding-top: 0;
+    }
+
+    .admin-main {
+        padding: 16px;
+    }
+
+    .admin-detail-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+}
