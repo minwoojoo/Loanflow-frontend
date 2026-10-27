@@ -1,0 +1,99 @@
+/* =====================================
+   운영자 처리 로그 목록 CSS
+===================================== */
+
+
+/* =====================================
+   1. 처리 로그 목록 영역
+===================================== */
+
+.admin-processing-logs {
+    width: 100%;
+    min-width: 0;
+}
+
+
+/* =====================================
+   2. 처리 로그 테이블
+===================================== */
+
+.admin-processing-logs .admin-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+/* 긴 로그 유형이 있는 경우 줄바꿈 */
+.admin-processing-logs .admin-table td {
+    vertical-align: middle;
+}
+
+
+/* =====================================
+   3. 처리 상태 공통 배지
+===================================== */
+
+.admin-processing-status {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 20px;
+
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+
+/* =====================================
+   4. 처리 상태별 색상
+===================================== */
+
+/* 처리 시작 */
+.admin-processing-status.started {
+    background: #e8f0fc;
+    color: #2563eb;
+}
+
+/* 처리 성공 */
+.admin-processing-status.success {
+    background: #e4f6eb;
+    color: #208455;
+}
+
+/* 처리 실패 */
+.admin-processing-status.failed {
+    background: #fdeaea;
+    color: #c54040;
+}
+
+/* 중복 요청 */
+.admin-processing-status.duplicate {
+    background: #f0f1f3;
+    color: #687181;
+}
+
+
+/* =====================================
+   5. 오류 메시지
+===================================== */
+
+.admin-processing-logs .admin-error {
+    margin-top: 16px;
+}
+
+
+/* =====================================
+   6. 모바일 대응
+===================================== */
+
+@media (max-width: 768px) {
+
+    .admin-processing-logs .admin-panel {
+        padding: 16px;
+    }
+
+    .admin-processing-logs .admin-table th,
+    .admin-processing-logs .admin-table td {
+        padding: 12px 10px;
+        font-size: 13px;
+    }
+}

@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 
+import "./AdminLoanApplicationListPage.css";
+
 export default function AdminLoanApplicationListPage({accessToken, onSelect}) {
     // 대출 신청 목록
     const [applications, setApplications] = useState([]);
@@ -165,11 +167,11 @@ export default function AdminLoanApplicationListPage({accessToken, onSelect}) {
                                                 <span
                                                     className={
                                                         `admin-status ${getStatusClass(
-                                                            app.applicationStatus
+                                                            app.statusName
                                                         )}`
                                                     }
                                                 >
-                                                    {app.applicationStatus}
+                                                    {app.statusName}
                                                 </span>
                                         </td>
 

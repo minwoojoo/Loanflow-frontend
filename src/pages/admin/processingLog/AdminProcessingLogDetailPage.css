@@ -1,0 +1,114 @@
+/* =====================================
+   운영자 처리 로그 상세 CSS
+===================================== */
+
+
+/* =====================================
+   1. 처리 로그 상세 영역
+===================================== */
+
+.admin-processing-log-detail {
+    width: 100%;
+    min-width: 0;
+}
+
+
+/* =====================================
+   2. 상세 정보 섹션
+===================================== */
+
+.admin-processing-log-detail .admin-detail-sections {
+    gap: 20px;
+}
+
+
+/* =====================================
+   3. 긴 데이터 표시
+===================================== */
+
+.admin-processing-log-detail .admin-detail-grid strong {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+
+/* =====================================
+   4. 요청 식별자
+===================================== */
+
+.admin-processing-request-id {
+    font-family: Consolas, monospace;
+    font-size: 13px;
+    color: #34435a;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* =====================================
+   5. 오류 정보 영역
+===================================== */
+
+.admin-processing-error-section {
+    padding: 20px;
+
+    background: #fffafa;
+    border: 1px solid #f3d6d6;
+    border-radius: 10px;
+}
+
+.admin-processing-error-title {
+    margin: 0 0 16px;
+
+    font-size: 15px;
+    font-weight: 700;
+    color: #c54040;
+}
+
+.admin-processing-error-code {
+    font-family: Consolas, monospace;
+    font-size: 13px;
+    font-weight: 600;
+    color: #b91c1c;
+}
+
+
+/* =====================================
+   6. 상세 오류 메시지
+===================================== */
+
+.admin-processing-error-message {
+    margin-top: 12px;
+    padding: 16px;
+
+    background: #ffffff;
+    border: 1px solid #f1dddd;
+    border-radius: 8px;
+
+    color: #536177;
+    font-size: 13px;
+    line-height: 1.7;
+
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+
+/* =====================================
+   7. 모바일 대응
+===================================== */
+
+@media (max-width: 600px) {
+
+    .admin-processing-log-detail .admin-panel {
+        padding: 16px;
+    }
+
+    .admin-processing-error-section {
+        padding: 16px;
+    }
+
+    .admin-processing-error-message {
+        padding: 12px;
+    }
+}

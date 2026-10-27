@@ -1,0 +1,346 @@
+/* =====================================
+   운영자 대시보드 CSS
+===================================== */
+
+
+/* =====================================
+   1. 대시보드 통계 카드 영역
+===================================== */
+
+.admin-dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 16px;
+    margin-top: 24px;
+}
+
+
+/* =====================================
+   2. 통계 카드 공통 스타일
+===================================== */
+
+.admin-summary-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-top: 3px solid #94a3b8;
+    border-radius: 12px;
+    padding: 24px;
+
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.035);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.admin-summary-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+}
+
+
+/* =====================================
+   3. 통계 카드별 상단 색상
+===================================== */
+
+.admin-summary-card:nth-child(1) {
+    border-top-color: #2563eb;
+}
+
+.admin-summary-card:nth-child(2) {
+    border-top-color: #94a3b8;
+}
+
+.admin-summary-card:nth-child(3) {
+    border-top-color: #f59e0b;
+}
+
+.admin-summary-card:nth-child(4) {
+    border-top-color: #10b981;
+}
+
+.admin-summary-card:nth-child(5) {
+    border-top-color: #ef4444;
+}
+
+
+/* =====================================
+   4. 통계 카드 텍스트
+===================================== */
+
+.admin-summary-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #64748b;
+    margin-bottom: 18px;
+}
+
+.admin-summary-value {
+    font-size: 32px;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.admin-summary-value span {
+    font-size: 14px;
+    font-weight: 400;
+    color: #94a3b8;
+}
+
+
+/* =====================================
+   5. 대시보드 차트 영역
+===================================== */
+
+.admin-dashboard-panels {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+
+    margin-top: 0;
+    align-items: stretch;
+}
+
+/* 차트 패널 높이 확장 */
+.admin-dashboard-panels > .admin-panel {
+    min-height: 430px;
+    box-sizing: border-box;
+}
+
+
+/* =====================================
+   6. 일별 대출 신청 추이
+===================================== */
+
+.admin-dashboard-upcoming {
+    min-height: 430px;
+}
+
+.admin-dashboard-upcoming h3 {
+    font-size: 17px;
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 8px;
+}
+
+.admin-dashboard-upcoming p {
+    font-size: 13px;
+    color: #64748b;
+}
+
+/* 기존 공통 메시지 스타일 유지 */
+.admin-upcoming-message {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 150px;
+    margin-top: 20px;
+
+    border: 1px dashed #cbd5e1;
+    border-radius: 10px;
+
+    background-color: #f8fafc;
+
+    color: #94a3b8;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+
+/* =====================================
+   7. 일별 신청 추이 막대그래프
+===================================== */
+
+.admin-trend-chart {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+
+    gap: 16px;
+    height: 290px;
+    margin-top: 24px;
+}
+
+/* 날짜별 개별 항목 */
+.admin-trend-item {
+    flex: 1;
+    min-width: 0;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+
+    gap: 10px;
+}
+
+/* 막대 위의 신청 건수 */
+.admin-trend-count {
+    font-size: 12px;
+    font-weight: 600;
+    color: #475569;
+    white-space: nowrap;
+}
+
+/* 실제 막대가 표시되는 영역 */
+.admin-trend-bar-area {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+
+    width: 100%;
+    height: 240px;
+    min-height: 0;
+}
+
+/* 막대그래프 */
+.admin-trend-bar {
+    width: 70%;
+    max-width: 48px;
+    min-height: 0;
+
+    background-color: #2563eb;
+    border-radius: 6px 6px 0 0;
+
+    transition: height 0.3s ease;
+}
+
+/* 날짜 표시 */
+.admin-trend-date {
+    font-size: 12px;
+    color: #64748b;
+    white-space: nowrap;
+}
+
+
+/* =====================================
+   8. 대출 신청 퍼널 분석
+===================================== */
+
+.admin-funnel {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+
+    gap: 24px;
+    min-height: 290px;
+    margin-top: 24px;
+}
+
+/* 퍼널 개별 단계 */
+.admin-funnel-step {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* 단계명 및 신청 건수 */
+.admin-funnel-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+
+    font-size: 14px;
+    color: #475569;
+}
+
+.admin-funnel-heading strong {
+    font-size: 15px;
+    color: #1e293b;
+}
+
+/* 퍼널 막대 배경 */
+.admin-funnel-track {
+    width: 100%;
+    height: 24px;
+
+    background-color: #e2e8f0;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+/* 퍼널 진행 막대 */
+.admin-funnel-fill {
+    height: 100%;
+
+    background-color: #2563eb;
+    border-radius: 6px;
+
+    transition: width 0.3s ease;
+}
+
+/* 퍼널 단계별 전환율 */
+.admin-funnel-rate {
+    font-size: 12px;
+    color: #64748b;
+}
+
+
+/* =====================================
+   9. 반응형 - 1200px 이하
+===================================== */
+
+@media (max-width: 1200px) {
+    .admin-dashboard-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+
+/* =====================================
+   10. 반응형 - 900px 이하
+===================================== */
+
+@media (max-width: 900px) {
+    .admin-dashboard-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .admin-dashboard-panels {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-dashboard-panels > .admin-panel {
+        min-height: 390px;
+    }
+
+    .admin-dashboard-upcoming {
+        min-height: 390px;
+    }
+
+    .admin-trend-chart {
+        height: 260px;
+    }
+
+    .admin-trend-bar-area {
+        height: 210px;
+    }
+
+    .admin-funnel {
+        min-height: 260px;
+    }
+}
+
+
+/* =====================================
+   11. 반응형 - 768px 이하
+===================================== */
+
+@media (max-width: 768px) {
+    .admin-dashboard-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .admin-trend-chart {
+        gap: 8px;
+    }
+
+    .admin-trend-bar {
+        max-width: 36px;
+    }
+
+    .admin-trend-count,
+    .admin-trend-date {
+        font-size: 11px;
+    }
+}

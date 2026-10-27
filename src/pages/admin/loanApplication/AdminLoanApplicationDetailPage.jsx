@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 
+import "./AdminLoanApplicationDetailPage.css";
+
 export default function AdminLoanApplicationDetailPage({
                                                            accessToken,
                                                            applicationId,
@@ -169,10 +171,10 @@ export default function AdminLoanApplicationDetailPage({
                                 <strong>
                                     <span
                                         className={`admin-status ${getStatusClass(
-                                            application.applicationStatus
+                                            application.statusName
                                         )}`}
                                     >
-                                        {application.applicationStatus}
+                                        {application.statusName}
                                     </span>
                                 </strong>
                             </div>

@@ -2,15 +2,21 @@ import { useState } from "react";
 
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-
-import AdminDashboardPage from "./AdminDashboardPage";
-import AdminLoanApplicationListPage from "./AdminLoanApplicationListPage";
-import AdminLoanApplicationDetailPage from "./AdminLoanApplicationDetailPage";
-import AdminProcessingLogsPage from "./AdminProcessingLogsPage";
-import AdminProcessingLogDetailPage from "./AdminProcessingLogDetailPage.jsx";
-import AdminTermsManagementPage from "./AdminTermsManagementPage";
-
 import "./AdminPage.css";
+import "./AdminCommon.css";
+
+import AdminDashboardPage from "./dashboard/AdminDashboardPage";
+
+import AdminLoanApplicationListPage from "./loanApplication/AdminLoanApplicationListPage";
+import AdminLoanApplicationDetailPage from "./loanApplication/AdminLoanApplicationDetailPage";
+
+import AdminProcessingLogsPage from "./processingLog/AdminProcessingLogsPage";
+import AdminProcessingLogDetailPage from "./processingLog/AdminProcessingLogDetailPage";
+
+import AdminTermsManagementPage from "./terms/AdminTermsManagementPage";
+import AdminTermsDetailPage from "./terms/AdminTermsDetailPage";
+import AdminTermsCreatePage from "./terms/AdminTermsCreatePage";
+
 
 const menus = [
     { id: "dashboard", label: "대시보드", icon: "▦" },
@@ -30,23 +36,44 @@ export default function AdminPage({ accessToken, onLogout }) {
     // 상세 조회할 로그 ID
     const [selectedLogId, setSelectedLogId] = useState(null);
 
-    // 사이드바 메뉴 이동
+    // list: 목록, detail: 상세, create: 신규 등록
+    const [termsView, setTermsView] = useState("list");
+
+    // 상세 조회할 약관 ID
+    const [selectedTermsId, setSelectedTermsId] = useState(null);
+
+
+    // ==========================
+    // 1. 사이드바 메뉴 이동
+    // ==========================
     const handleMenuChange = (tab) => {
         setActiveTab(tab);
+
         setSelectedApplicationId(null);
         setSelectedLogId(null);
+
+        // [추가] 약관 화면 상태 초기화
+        setTermsView("list");
+        setSelectedTermsId(null);
     };
 
-    // 대시보드로 이동
+
+    // ==========================
+    // 2. 대시보드로 이동
+    // ==========================
     const handleGoHome = () => {
         handleMenuChange("dashboard");
     };
 
-    // 현재 선택된 화면 표시
+
+    // ==========================
+    // 3. 현재 선택된 화면 표시
+    // ==========================
     const renderContent = () => {
 
         switch (activeTab) {
 
+            // 대시보드
             case "dashboard":
                 return (
                     <AdminDashboardPage
@@ -54,6 +81,8 @@ export default function AdminPage({ accessToken, onLogout }) {
                     />
                 );
 
+
+            // 대출 신청서 조회
             case "applications":
                 if (selectedApplicationId !== null) {
                     return (
@@ -74,13 +103,17 @@ export default function AdminPage({ accessToken, onLogout }) {
                     />
                 );
 
+
+            // 심사 처리 로그 조회
             case "logs":
                 if (selectedLogId !== null) {
                     return (
                         <AdminProcessingLogDetailPage
                             accessToken={accessToken}
                             logId={selectedLogId}
-                            onBack={() => setSelectedLogId(null)}
+                            onBack={() =>
+                                setSelectedLogId(null)
+                            }
                         />
                     );
                 }
@@ -92,18 +125,69 @@ export default function AdminPage({ accessToken, onLogout }) {
                     />
                 );
 
+
+            // ==========================
+            // [수정] 약관 관리
+            // ==========================
             case "terms":
+
+                // 1. 약관 상세 조회 화면
+                if (termsView === "detail") {
+                    return (
+                        <AdminTermsDetailPage
+                            accessToken={accessToken}
+                            termsId={selectedTermsId}
+                            onBack={() => {
+                                setSelectedTermsId(null);
+                                setTermsView("list");
+                            }}
+                        />
+                    );
+                }
+
+                // 2. 신규 약관 등록 화면
+                if (termsView === "create") {
+                    return (
+                        <AdminTermsCreatePage
+                            accessToken={accessToken}
+                            onBack={() => {
+                                setSelectedTermsId(null);
+                                setTermsView("list");
+                            }}
+                        />
+                    );
+                }
+
+                // 3. 전체 약관 목록 화면
                 return (
                     <AdminTermsManagementPage
                         accessToken={accessToken}
+                        onSelect={(termsId) => {
+                            setSelectedTermsId(termsId);
+                            setTermsView("detail");
+                        }}
+                        onCreate={() => {
+                            setSelectedTermsId(null);
+                            setTermsView("create");
+                        }}
                     />
                 );
 
+
+            // 기본 화면
             default:
-                return <AdminDashboardPage />;
+                return (
+                    <AdminDashboardPage
+                        accessToken={accessToken}
+                    />
+                );
         }
     };
 
+
+    // ==========================
+    // 4. 화면 렌더링
+    // ==========================
     return (
         <div className="admin-layout">
 

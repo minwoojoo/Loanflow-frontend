@@ -234,7 +234,7 @@ export default function HomePage({
     // 신청 날짜 표시
     function formatApplicationDate(application) {
         const date =
-            application.applicationStatus === "작성중"
+            application.statusName === "작성중"
                 ? application.createdAt
                 : application.appliedAt;
 
@@ -532,16 +532,16 @@ export default function HomePage({
 
                                                 <span
                                                     className={`history-status ${
-                                                        application.applicationStatus === "승인"
+                                                        application.statusName === "승인"
                                                             ? "approved"
-                                                            : application.applicationStatus === "거절"
+                                                            : application.statusName === "거절"
                                                                 ? "rejected"
-                                                                : application.applicationStatus === "심사중"
+                                                                : application.statusName === "심사중"
                                                                     ? "reviewing"
                                                                     : "draft"
                                                     }`}
                                                 >
-                                                    {application.applicationStatus}
+                                                    {application.statusName}
                                                 </span>
                                             </div>
 
@@ -560,7 +560,7 @@ export default function HomePage({
                                             {/* 신청 날짜 */}
                                             <div className="history-card-bottom">
                                                 <span>
-                                                    {application.applicationStatus === "작성중"
+                                                    {application.statusName === "작성중"
                                                         ? "작성 시작일"
                                                         : "신청일"}
                                                 </span>

@@ -294,6 +294,60 @@
 
 
 
+/* =====================================
+   작성중 신청서 삭제 버튼
+===================================== */
+
+.loan-detail-delete-button {
+    padding: 12px 20px;
+
+    border: 1px solid #fecaca;
+    border-radius: 8px;
+
+    background-color: #fff1f2;
+    color: #b91c1c;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.loan-detail-delete-button:hover:not(:disabled) {
+    background-color: #ffe4e6;
+}
+
+.loan-detail-delete-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* 삭제 오류 메시지 */
+.loan-detail-delete-error {
+    margin: 16px 0 0;
+    color: #dc2626;
+    font-size: 14px;
+}
+
+/* 두 버튼 간 간격 */
+.loan-detail-action-area {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+@media (max-width: 600px) {
+    .loan-detail-delete-button,
+    .loan-detail-resume-button {
+        width: 100%;
+    }
+}
+
+
+
 
 
 @media (max-width: 768px) {

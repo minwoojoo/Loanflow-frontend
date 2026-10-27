@@ -1,0 +1,106 @@
+/* ==============================
+   약관 관리 목록 페이지
+============================== */
+
+.admin-terms-page {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* 신규 약관 등록 버튼 영역 */
+.admin-terms-toolbar {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+/* 신규 약관 등록 버튼 */
+.admin-terms-create-button {
+    padding: 10px 16px;
+    background-color: #2563eb;
+    color: #ffffff;
+
+    border: none;
+    border-radius: 6px;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: background-color 0.2s ease;
+}
+
+.admin-terms-create-button:hover {
+    background-color: #1d4ed8;
+}
+
+.admin-terms-create-button:active {
+    background-color: #1e40af;
+}
+
+/* 약관명 */
+.admin-terms-name {
+    font-weight: 600;
+    color: #1e293b;
+}
+
+/* 필수 여부 */
+.admin-terms-required {
+    display: inline-block;
+    padding: 5px 10px;
+
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+
+    white-space: nowrap;
+}
+
+.admin-terms-required.required {
+    background-color: #fef3c7;
+    color: #92400e;
+}
+
+.admin-terms-required.optional {
+    background-color: #f1f5f9;
+    color: #475569;
+}
+
+/* 활성 상태 */
+.admin-terms-status {
+    display: inline-block;
+    padding: 5px 10px;
+
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+
+    white-space: nowrap;
+}
+
+.admin-terms-status.active {
+    background-color: #dcfce7;
+    color: #166534;
+}
+
+.admin-terms-status.inactive {
+    background-color: #f1f5f9;
+    color: #64748b;
+}
+
+/* 반응형 처리 */
+@media (max-width: 768px) {
+    .admin-terms-toolbar {
+        justify-content: stretch;
+    }
+
+    .admin-terms-create-button {
+        width: 100%;
+    }
+
+    .admin-terms-page .admin-table {
+        min-width: 760px;
+    }
+}

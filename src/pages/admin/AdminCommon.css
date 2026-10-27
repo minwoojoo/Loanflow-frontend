@@ -1,0 +1,207 @@
+/* =====================================
+   운영자 공통 CSS
+===================================== */
+
+
+/* =====================================
+   1. 페이지 제목
+===================================== */
+
+.admin-page-heading {
+    margin-bottom: 28px;
+}
+
+.admin-page-heading h2 {
+    margin: 0 0 8px;
+    font-size: 24px;
+}
+
+.admin-page-heading p {
+    margin: 0;
+    font-size: 14px;
+    color: #788599;
+}
+
+
+/* =====================================
+   2. 공통 패널
+===================================== */
+
+.admin-panel {
+    padding: 24px;
+    border: 1px solid #e5eaf0;
+    border-radius: 12px;
+    background: #ffffff;
+}
+
+.admin-panel h3 {
+    margin: 0 0 20px;
+    font-size: 17px;
+}
+
+
+/* =====================================
+   3. 공통 목록 헤더
+===================================== */
+
+.admin-list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.admin-list-header h3 {
+    margin: 0;
+    font-size: 17px;
+}
+
+.admin-list-header span {
+    color: #68778d;
+    font-size: 14px;
+}
+
+
+/* =====================================
+   4. 공통 테이블
+===================================== */
+
+.admin-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+.admin-table th,
+.admin-table td {
+    padding: 15px 12px;
+    border-bottom: 1px solid #e5eaf0;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+.admin-table th {
+    background: #f5f7fb;
+    color: #536177;
+    font-weight: 600;
+}
+
+.admin-table tbody tr:hover {
+    background: #f8faff;
+}
+
+
+/* =====================================
+   5. 상세 조회 버튼
+===================================== */
+
+.admin-detail-button {
+    padding: 7px 14px;
+    border: 1px solid #cbdaf0;
+    border-radius: 6px;
+    background: #ffffff;
+    color: #2157a4;
+    cursor: pointer;
+}
+
+.admin-detail-button:hover {
+    background: #edf4ff;
+}
+
+
+/* =====================================
+   6. 목록으로 돌아가기 버튼
+===================================== */
+
+.admin-back-button {
+    padding: 10px 16px;
+    margin-bottom: 24px;
+    border: 1px solid #dbe3ef;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #536177;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.admin-back-button:hover {
+    background: #f0f4fa;
+    color: #2157a4;
+}
+
+
+/* =====================================
+   7. 상세 정보 영역
+===================================== */
+
+.admin-detail-sections {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.admin-detail-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+}
+
+.admin-detail-grid > div {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+}
+
+.admin-detail-grid > div > span {
+    font-size: 13px;
+    color: #788599;
+}
+
+.admin-detail-grid strong {
+    font-size: 15px;
+    font-weight: 600;
+    color: #243044;
+    overflow-wrap: anywhere;
+}
+
+
+/* =====================================
+   8. 공통 메시지
+===================================== */
+
+.admin-empty {
+    padding: 50px 0;
+    color: #99a4b4;
+    text-align: center;
+}
+
+.admin-error {
+    color: #d32f2f;
+}
+
+.admin-placeholder {
+    min-height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #99a4b4;
+    text-align: center;
+}
+
+
+/* =====================================
+   9. 모바일 대응
+===================================== */
+
+@media (max-width: 600px) {
+    .admin-detail-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+}

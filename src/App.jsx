@@ -2,10 +2,10 @@ import { useRef, useState } from "react";
 
 import LoginPage from "./pages/login/LoginPage";
 import HomePage from "./pages/home/HomePage";
-import TermsAgreementPage from "./pages/loan/TermsAgreementPage";
-import LoanLimitPage from "./pages/loan/LoanLimitPage";
-import LoanApplicationFormPage from "./pages/loan/LoanApplicationFormPage";
-import LoanApplicationDetailPage from "./pages/loan/LoanApplicationDetailPage";
+import TermsAgreementPage from "./pages/loan/terms/TermsAgreementPage";
+import LoanLimitPage from "./pages/loan/limit/LoanLimitPage";
+import LoanApplicationFormPage from "./pages/loan/application/LoanApplicationFormPage";
+import LoanApplicationDetailPage from "./pages/loan/application/LoanApplicationDetailPage";
 import AdminPage from "./pages/admin/AdminPage.jsx";
 
 import Header from "./components/Header";
@@ -158,7 +158,7 @@ export default function App() {
             return;
         }
 
-        if (application.applicationStatus !== "작성중") {
+        if (application.statusName !== "작성중") {
             return;
         }
 

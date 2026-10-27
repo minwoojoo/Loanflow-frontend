@@ -11,6 +11,11 @@ export default function LoanApplicationDetailPage({
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
 
+    // 신청서 삭제 처리
+    const [deleting, setDeleting] = useState(false);
+    const [deleteError, setDeleteError] = useState("");
+
+
     // =====================================
     // 1. 대출 신청 상세 조회
     // =====================================
@@ -185,9 +190,9 @@ export default function LoanApplicationDetailPage({
         if (data.reviewedAt) {
             let resultLabel = "대출 심사 완료";
 
-            if (data.applicationStatus === "승인") {
+            if (data.statusName === "승인") {
                 resultLabel = "대출 심사 승인";
-            } else if (data.applicationStatus === "거절") {
+            } else if (data.statusName === "거절") {
                 resultLabel = "대출 심사 거절";
             }
 
@@ -201,7 +206,84 @@ export default function LoanApplicationDetailPage({
     }
 
     // =====================================
-    // 8. 화면
+    // 8. 작성중 대출 신청서 삭제
+    // =====================================
+    const handleDeleteApplication = async () => {
+
+        // 작성중 상태에서만 삭제 허용
+        if (
+            !application ||
+            application.statusName !== "작성중" ||
+            deleting
+        ) {
+            return;
+        }
+
+        const confirmed = window.confirm(
+            "작성 중인 대출 신청서를 삭제하시겠습니까?\n" +
+            "삭제한 신청서는 신청 내역에서 더 이상 조회할 수 없습니다."
+        );
+
+        if (!confirmed) {
+            return;
+        }
+
+        setDeleting(true);
+        setDeleteError("");
+
+        try {
+            const response = await fetch(
+                `/api/loan-applications/${applicationId}`,
+                {
+                    method: "DELETE",
+                    headers: {
+                        Authorization: `Bearer ${accessToken}`
+                    }
+                }
+            );
+
+            if (!response.ok) {
+                if (response.status === 401) {
+                    throw new Error(
+                        "로그인이 만료되었습니다. 다시 로그인해주세요."
+                    );
+                }
+
+                if (response.status === 403) {
+                    throw new Error(
+                        "접근 권한이 없습니다."
+                    );
+                }
+
+                if (response.status === 404) {
+                    throw new Error(
+                        "삭제 가능한 대출 신청서가 없습니다."
+                    );
+                }
+
+                throw new Error(
+                    "대출 신청서 삭제에 실패했습니다."
+                );
+            }
+
+            // 204 No Content: 응답 본문 없음
+            window.alert("대출 신청서가 삭제되었습니다.");
+
+            // 신청 목록 화면으로 이동
+            onBack();
+
+        } catch (err) {
+            setDeleteError(
+                err.message || "신청서 삭제 중 오류가 발생했습니다."
+            );
+        } finally {
+            setDeleting(false);
+        }
+    };
+
+
+    // =====================================
+    // 9. 화면
     // =====================================
     return (
         <main className="loan-detail-page">
@@ -260,10 +342,10 @@ export default function LoanApplicationDetailPage({
 
                                 <span
                                     className={`loan-detail-status ${getStatusClass(
-                                        application.applicationStatus
+                                        application.statusName
                                     )}`}
                                 >
-                                    {application.applicationStatus}
+                                    {application.statusName}
                                 </span>
                             </div>
 
@@ -384,30 +466,56 @@ export default function LoanApplicationDetailPage({
                             </div>
 
                             {/* 현재 상태 안내 */}
-                            {application.applicationStatus === "작성중" && (
+                            {application.statusName === "작성중" && (
                                 <div className="loan-detail-progress-message">
                                     아직 최종 제출되지 않은 신청서입니다.
                                 </div>
                             )}
 
-                            {application.applicationStatus === "심사중" && (
+                            {application.statusName === "심사중" && (
                                 <div className="loan-detail-progress-message">
                                     현재 대출 심사가 진행 중입니다.
                                 </div>
                             )}
                         </section>
 
-                        {/* 작성중 신청서 이어서 신청 */}
-                        {application.applicationStatus === "작성중" && (
-                            <div className="loan-detail-action-area">
-                                <button
-                                    type="button"
-                                    className="loan-detail-resume-button"
-                                    onClick={() => onResume(application)}
-                                >
-                                    이어서 신청하기 →
-                                </button>
-                            </div>
+                        {/* 작성중 신청서 수정 및 삭제 */}
+                        {application.statusName === "작성중" && (
+                            <>
+                                {deleteError && (
+                                    <p className="loan-detail-delete-error" role="alert">
+                                        {deleteError}
+                                    </p>
+                                )}
+
+                                <div className="loan-detail-action-area">
+
+                                    {/* 신청서 삭제 */}
+                                    <button
+                                        type="button"
+                                        className="loan-detail-delete-button"
+                                        onClick={handleDeleteApplication}
+                                        disabled={deleting}
+                                    >
+                                        {deleting
+                                            ? "삭제 중..."
+                                            : "신청서 삭제"}
+                                    </button>
+
+                                    {/* 이어서 신청하기 */}
+                                    <button
+                                        type="button"
+                                        className="loan-detail-resume-button"
+                                        onClick={() => {
+                                            onResume(application);
+                                        }}
+                                        disabled={deleting}
+                                    >
+                                        이어서 신청하기 →
+                                    </button>
+
+                                </div>
+                            </>
                         )}
                     </>
                 )}

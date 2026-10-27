@@ -1,0 +1,209 @@
+/* ==============================
+   신규 약관 등록 페이지
+============================== */
+
+.admin-terms-create-page {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* 등록 폼 */
+.admin-terms-create-form {
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+}
+
+/* 폼 제목 */
+.admin-terms-create-form-header {
+    padding-bottom: 18px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.admin-terms-create-form-header h3 {
+    margin: 0 0 8px;
+    font-size: 19px;
+    font-weight: 700;
+    color: #1e293b;
+}
+
+.admin-terms-create-form-header p {
+    margin: 0;
+    color: #64748b;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+/* 약관 기본 정보 2열 배치 */
+.admin-terms-create-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+/* 개별 입력 필드 */
+.admin-terms-create-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+}
+
+.admin-terms-create-field label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #334155;
+}
+
+/* 필수 입력 표시 */
+.admin-terms-create-field .required-mark {
+    color: #dc2626;
+}
+
+/* input, select, textarea */
+.admin-terms-create-field input,
+.admin-terms-create-field select,
+.admin-terms-create-field textarea {
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 11px 13px;
+
+    border: 1px solid #cbd5e1;
+    border-radius: 7px;
+
+    background-color: #ffffff;
+    color: #1e293b;
+
+    font: inherit;
+    font-size: 14px;
+    line-height: 1.5;
+
+    transition: border-color 0.2s ease;
+}
+
+/* 입력 포커스 */
+.admin-terms-create-field input:focus,
+.admin-terms-create-field select:focus,
+.admin-terms-create-field textarea:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+/* 비활성화된 입력 */
+.admin-terms-create-field input:disabled,
+.admin-terms-create-field select:disabled,
+.admin-terms-create-field textarea:disabled {
+    background-color: #f8fafc;
+    cursor: not-allowed;
+}
+
+/* 약관 내용 입력 */
+.admin-terms-create-field textarea {
+    resize: vertical;
+    min-height: 240px;
+    line-height: 1.7;
+}
+
+/* 입력 안내 */
+.admin-terms-create-help {
+    margin: 0;
+    font-size: 12px;
+    color: #64748b;
+}
+
+/* 신규 등록 안내 */
+.admin-terms-create-notice {
+    padding: 14px 16px;
+
+    background-color: #eff6ff;
+    border: 1px solid #bfdbfe;
+    border-radius: 7px;
+
+    color: #1e40af;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+/* 하단 버튼 */
+.admin-terms-create-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+
+    padding-top: 20px;
+    border-top: 1px solid #e2e8f0;
+}
+
+.admin-terms-create-cancel,
+.admin-terms-create-submit {
+    padding: 11px 22px;
+
+    border-radius: 7px;
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+/* 취소 버튼 */
+.admin-terms-create-cancel {
+    border: 1px solid #cbd5e1;
+    background-color: #ffffff;
+    color: #475569;
+}
+
+.admin-terms-create-cancel:hover:not(:disabled) {
+    background-color: #f1f5f9;
+}
+
+/* 등록 버튼 */
+.admin-terms-create-submit {
+    border: none;
+    background-color: #2563eb;
+    color: #ffffff;
+}
+
+.admin-terms-create-submit:hover:not(:disabled) {
+    background-color: #1d4ed8;
+}
+
+/* 버튼 비활성화 */
+.admin-terms-create-cancel:disabled,
+.admin-terms-create-submit:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+
+
+/* 목록으로 돌아가기 버튼 */
+.admin-terms-create-page .admin-terms-back-button {
+    align-self: flex-start;
+    width: fit-content;
+    flex-shrink: 0;
+}
+
+
+
+
+/* 반응형 */
+@media (max-width: 768px) {
+    .admin-terms-create-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-terms-create-actions {
+        flex-direction: column-reverse;
+        align-items: stretch;
+    }
+
+    .admin-terms-create-cancel,
+    .admin-terms-create-submit {
+        width: 100%;
+    }
+}
