@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
+import { apiFetch } from "../../../api/apiFetch";
 import "./AdminTermsManagementPage.css";
 
 export default function AdminTermsManagementPage({
                                                      accessToken,
+                                                    auth,
+                                                    setAuth,
                                                      onSelect,
                                                      onCreate
                                                  }) {
@@ -21,15 +24,14 @@ export default function AdminTermsManagementPage({
             setError("");
 
             try {
-                const response = await fetch(
+                const response = await apiFetch(
                     "/api/admin/terms",
                     {
                         method: "GET",
-                        headers: {
-                            Authorization: `Bearer ${accessToken}`
-                        },
                         signal: controller.signal
-                    }
+                    },
+                    auth,
+                    setAuth
                 );
 
                 if (!response.ok) {

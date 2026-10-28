@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
-
+import { apiFetch } from "../../../api/apiFetch";
 import "./AdminLoanApplicationDetailPage.css";
 
 export default function AdminLoanApplicationDetailPage({
                                                            accessToken,
+                                                            auth,
+                                                            setAuth,
                                                            applicationId,
                                                            onBack
                                                        }) {
@@ -24,15 +26,14 @@ export default function AdminLoanApplicationDetailPage({
             setApplication(null);
 
             try {
-                const response = await fetch(
+                const response = await apiFetch(
                     `/api/admin/loan-applications/${applicationId}`,
                     {
                         method: "GET",
-                        headers: {
-                            Authorization: `Bearer ${accessToken}`
-                        },
                         signal: controller.signal
-                    }
+                    },
+                    auth,
+                    setAuth
                 );
 
                 if (!response.ok) {
@@ -56,11 +57,16 @@ export default function AdminLoanApplicationDetailPage({
                 }
 
                 const data = await response.json();
-                setApplication(data);
+
+                if (!controller.signal.aborted) {
+                    setApplication(data);
+                }
 
             } catch (err) {
-                if (err.name !== "AbortError") {
-                    setError(err.message);
+                if (!controller.signal.aborted && err.name !== "AbortError") {
+                    setError(
+                        err.message || "신청서 조회 중 오류가 발생했습니다."
+                    );
                 }
 
             } finally {

@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
+import { apiFetch } from "../../api/apiFetch";
 import "./HomePage.css";
 
 export default function HomePage({
                                      accessToken,
+                                    auth,
+                                    setAuth,
                                      onLogout,
                                      onStartLoan,
                                     checkingDraft = false,
@@ -51,12 +54,15 @@ export default function HomePage({
             setProductsError("");
 
             try {
-                const response = await fetch("/api/loan-products", {
-                    headers: {
-                        Authorization: `Bearer ${accessToken}`,
+                const response = await apiFetch(
+                    "/api/loan-products",
+                    {
+                        method: "GET",
+                        signal: controller.signal,
                     },
-                    signal: controller.signal,
-                });
+                    auth,
+                    setAuth
+                );
 
                 if (!response.ok) {
                     throw new Error(
@@ -101,12 +107,15 @@ export default function HomePage({
             setLoadError("");
 
             try {
-                const response = await fetch("/api/members/me", {
-                    headers: {
-                        Authorization: `Bearer ${accessToken}`,
+                const response = await apiFetch(
+                    "/api/members/me",
+                    {
+                        method: "GET",
+                        signal: controller.signal,
                     },
-                    signal: controller.signal,
-                });
+                    auth,
+                    setAuth
+                );
 
                 if (!response.ok) {
                     throw new Error(
@@ -152,15 +161,14 @@ export default function HomePage({
             setApplicationsError("");
 
             try {
-                const response = await fetch(
+                const response = await apiFetch(
                     "/api/loan-applications",
                     {
                         method: "GET",
-                        headers: {
-                            Authorization: `Bearer ${accessToken}`,
-                        },
                         signal: controller.signal,
-                    }
+                    },
+                    auth,
+                    setAuth
                 );
 
                 if (!response.ok) {
@@ -313,25 +321,32 @@ export default function HomePage({
         setFormError("");
 
         try {
-            const response = await fetch("/api/members/me", {
-                method: "PATCH",
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${accessToken}`,
+            const response = await apiFetch(
+                "/api/members/me",
+                {
+                    method: "PATCH",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(requestBody),
                 },
-                body: JSON.stringify(requestBody),
-            });
+                auth,
+                setAuth
+            );
 
             if (!response.ok) {
                 throw new Error("회원 정보 수정에 실패했습니다.");
             }
 
             // DB에 저장된 최신 정보 다시 조회
-            const updatedResponse = await fetch("/api/members/me", {
-                headers: {
-                    Authorization: `Bearer ${accessToken}`,
+            const updatedResponse = await apiFetch(
+                "/api/members/me",
+                {
+                    method: "GET",
                 },
-            });
+                auth,
+                setAuth
+            );
 
             if (!updatedResponse.ok) {
                 throw new Error(

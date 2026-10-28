@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-
+import { apiFetch } from "../../../api/apiFetch";
 import "./AdminLoanApplicationListPage.css";
 
-export default function AdminLoanApplicationListPage({accessToken, onSelect}) {
+export default function AdminLoanApplicationListPage({accessToken, auth, setAuth, onSelect}) {
     // 대출 신청 목록
     const [applications, setApplications] = useState([]);
 
@@ -19,15 +19,14 @@ export default function AdminLoanApplicationListPage({accessToken, onSelect}) {
             setError("");
 
             try {
-                const response = await fetch(
+                const response = await apiFetch(
                     "/api/admin/loan-applications",
                     {
                         method: "GET",
-                        headers: {
-                            Authorization: `Bearer ${accessToken}`
-                        },
                         signal: controller.signal
-                    }
+                    },
+                    auth,
+                    setAuth
                 );
 
                 if (!response.ok) {
@@ -49,10 +48,18 @@ export default function AdminLoanApplicationListPage({accessToken, onSelect}) {
                 }
 
                 const data = await response.json();
-                setApplications(data);
+
+                // 요청이 취소되지 않은 경우에만 상태 갱신
+                if (!controller.signal.aborted) {
+                    setApplications(data);
+                }
 
             } catch (err) {
-                if (err.name !== "AbortError") {
+                // 정상적으로 취소된 요청은 오류로 표시하지 않음
+                if (
+                    !controller.signal.aborted &&
+                    err.name !== "AbortError"
+                ) {
                     setError(err.message);
                 }
 

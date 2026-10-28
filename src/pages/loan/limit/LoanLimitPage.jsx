@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { apiFetch } from "../../../api/apiFetch";
 import "./LoanLimitPage.css";
 
 const EMPLOYMENT_TYPES = [
@@ -19,6 +20,8 @@ function getToday() {
 
 export default function LoanLimitPage({
                                           accessToken,
+                                        auth,
+                                        setAuth,
                                           applicationId,
                                           draftData,
                                           onBack,
@@ -134,12 +137,14 @@ export default function LoanLimitPage({
 
         try {
             // 1. 로그인한 회원 정보 조회
-            const response = await fetch("/api/members/me", {
-                method: "GET",
-                headers: {
-                    Authorization: `Bearer ${accessToken}`,
+            const response = await apiFetch(
+                "/api/members/me",
+                {
+                    method: "GET",
                 },
-            });
+                auth,
+                setAuth
+            );
 
             // 2. 오류 처리
             if (!response.ok) {
@@ -201,13 +206,12 @@ export default function LoanLimitPage({
 
         try {
 
-            const response = await fetch(
+            const response = await apiFetch(
                 "/api/loan-limits/check",
                 {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
-                        Authorization: `Bearer ${accessToken}`,
                     },
                     body: JSON.stringify({
                         applicationId: Number(applicationId),
@@ -215,7 +219,9 @@ export default function LoanLimitPage({
                         employmentType,
                         birthDate,
                     }),
-                }
+                },
+                auth,
+                setAuth
             );
 
             if (!response.ok) {
@@ -320,16 +326,17 @@ export default function LoanLimitPage({
             }
 
             // 10-3. 임시저장 API 호출
-            const response = await fetch(
+            const response = await apiFetch(
                 `/api/loan-applications/${applicationId}`,
                 {
                     method: "PATCH",
                     headers: {
                         "Content-Type": "application/json",
-                        Authorization: `Bearer ${accessToken}`,
                     },
                     body: JSON.stringify(requestBody),
-                }
+                },
+                auth,
+                setAuth
             );
 
             // 10-4. 오류 처리

@@ -25,7 +25,7 @@ const menus = [
     { id: "terms", label: "약관 관리", icon: "☰" }
 ];
 
-export default function AdminPage({ accessToken, onLogout }) {
+export default function AdminPage({ accessToken, auth, setAuth, onLogout }) {
 
     // 로그인 후 기본 화면은 대시보드
     const [activeTab, setActiveTab] = useState("dashboard");
@@ -78,6 +78,8 @@ export default function AdminPage({ accessToken, onLogout }) {
                 return (
                     <AdminDashboardPage
                         accessToken={accessToken}
+                        auth={auth}
+                        setAuth={setAuth}
                     />
                 );
 
@@ -88,6 +90,8 @@ export default function AdminPage({ accessToken, onLogout }) {
                     return (
                         <AdminLoanApplicationDetailPage
                             accessToken={accessToken}
+                            auth={auth}
+                            setAuth={setAuth}
                             applicationId={selectedApplicationId}
                             onBack={() =>
                                 setSelectedApplicationId(null)
@@ -99,6 +103,8 @@ export default function AdminPage({ accessToken, onLogout }) {
                 return (
                     <AdminLoanApplicationListPage
                         accessToken={accessToken}
+                        auth={auth}
+                        setAuth={setAuth}
                         onSelect={setSelectedApplicationId}
                     />
                 );
@@ -110,6 +116,8 @@ export default function AdminPage({ accessToken, onLogout }) {
                     return (
                         <AdminProcessingLogDetailPage
                             accessToken={accessToken}
+                            auth={auth}
+                            setAuth={setAuth}
                             logId={selectedLogId}
                             onBack={() =>
                                 setSelectedLogId(null)
@@ -121,6 +129,8 @@ export default function AdminPage({ accessToken, onLogout }) {
                 return (
                     <AdminProcessingLogsPage
                         accessToken={accessToken}
+                        auth={auth}
+                        setAuth={setAuth}
                         onSelect={setSelectedLogId}
                     />
                 );
@@ -136,6 +146,8 @@ export default function AdminPage({ accessToken, onLogout }) {
                     return (
                         <AdminTermsDetailPage
                             accessToken={accessToken}
+                            auth={auth}
+                            setAuth={setAuth}
                             termsId={selectedTermsId}
                             onBack={() => {
                                 setSelectedTermsId(null);
@@ -150,6 +162,8 @@ export default function AdminPage({ accessToken, onLogout }) {
                     return (
                         <AdminTermsCreatePage
                             accessToken={accessToken}
+                            auth={auth}
+                            setAuth={setAuth}
                             onBack={() => {
                                 setSelectedTermsId(null);
                                 setTermsView("list");
@@ -162,6 +176,8 @@ export default function AdminPage({ accessToken, onLogout }) {
                 return (
                     <AdminTermsManagementPage
                         accessToken={accessToken}
+                        auth={auth}
+                        setAuth={setAuth}
                         onSelect={(termsId) => {
                             setSelectedTermsId(termsId);
                             setTermsView("detail");
@@ -179,6 +195,8 @@ export default function AdminPage({ accessToken, onLogout }) {
                 return (
                     <AdminDashboardPage
                         accessToken={accessToken}
+                        auth={auth}
+                        setAuth={setAuth}
                     />
                 );
         }

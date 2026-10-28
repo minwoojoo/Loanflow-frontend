@@ -1,8 +1,11 @@
 import { useState } from "react";
+import { apiFetch } from "../../../api/apiFetch";
 import "./AdminTermsCreatePage.css";
 
 export default function AdminTermsCreatePage({
                                                  accessToken,
+                                                auth,
+                                                setAuth,
                                                  onBack
                                              }) {
     // ==========================
@@ -65,16 +68,17 @@ export default function AdminTermsCreatePage({
                 requiredYn: form.requiredYn
             };
 
-            const response = await fetch(
+            const response = await apiFetch(
                 "/api/admin/terms",
                 {
                     method: "POST",
                     headers: {
-                        Authorization: `Bearer ${accessToken}`,
-                        "Content-Type": "application/json"
+                        "Content-Type": "application/json",
                     },
-                    body: JSON.stringify(requestBody)
-                }
+                    body: JSON.stringify(requestBody),
+                },
+                auth,
+                setAuth
             );
 
             if (!response.ok) {

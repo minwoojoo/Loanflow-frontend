@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
+import { apiFetch } from "../../../api/apiFetch";
 import "./LoanApplicationDetailPage.css";
 
 export default function LoanApplicationDetailPage({
                                                       accessToken,
+                                                    auth,
+                                                    setAuth,
                                                       applicationId,
                                                       onBack,
                                                     onResume,
@@ -35,16 +38,17 @@ export default function LoanApplicationDetailPage({
             setApplication(null);
 
             try {
-                const response = await fetch(
+
+                const response = await apiFetch(
                     `/api/loan-applications/${applicationId}`,
                     {
                         method: "GET",
-                        headers: {
-                            Authorization: `Bearer ${accessToken}`,
-                        },
                         signal: controller.signal,
-                    }
+                    },
+                    auth,
+                    setAuth
                 );
+
 
                 if (!response.ok) {
                     if (response.status === 401) {
@@ -71,12 +75,11 @@ export default function LoanApplicationDetailPage({
                 }
 
             } catch (err) {
-                if (!controller.signal.aborted) {
+                if (!controller.signal.aborted && err.name !== "AbortError") {
                     setError(
                         err.message || "신청서 조회 중 오류가 발생했습니다."
                     );
                 }
-
             } finally {
                 if (!controller.signal.aborted) {
                     setLoading(false);
@@ -232,15 +235,16 @@ export default function LoanApplicationDetailPage({
         setDeleteError("");
 
         try {
-            const response = await fetch(
+
+            const response = await apiFetch(
                 `/api/loan-applications/${applicationId}`,
                 {
                     method: "DELETE",
-                    headers: {
-                        Authorization: `Bearer ${accessToken}`
-                    }
-                }
+                },
+                auth,
+                setAuth
             );
+
 
             if (!response.ok) {
                 if (response.status === 401) {

@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
+import { apiFetch } from "../../../api/apiFetch";
 import "./AdminTermsDetailPage.css";
 
 export default function AdminTermsDetailPage({
                                                  accessToken,
+                                                auth,
+                                                setAuth,
                                                  termsId,
                                                  onBack
                                              }) {
@@ -24,15 +27,14 @@ export default function AdminTermsDetailPage({
             setTerms(null);
 
             try {
-                const response = await fetch(
+                const response = await apiFetch(
                     `/api/admin/terms/${termsId}`,
                     {
                         method: "GET",
-                        headers: {
-                            Authorization: `Bearer ${accessToken}`
-                        },
                         signal: controller.signal
-                    }
+                    },
+                    auth,
+                    setAuth
                 );
 
                 if (!response.ok) {
@@ -108,14 +110,13 @@ export default function AdminTermsDetailPage({
         setError("");
 
         try {
-            const response = await fetch(
+            const response = await apiFetch(
                 `/api/admin/terms/${termsId}/deactivate`,
                 {
                     method: "PATCH",
-                    headers: {
-                        Authorization: `Bearer ${accessToken}`
-                    }
-                }
+                },
+                auth,
+                setAuth
             );
 
             if (!response.ok) {

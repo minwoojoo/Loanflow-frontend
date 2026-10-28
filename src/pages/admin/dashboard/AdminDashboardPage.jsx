@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-
+import { apiFetch } from "../../../api/apiFetch";
 import "./AdminDashboardPage.css";
 
 
-export default function AdminDashboardPage({accessToken}) {
+export default function AdminDashboardPage({accessToken, auth, setAuth}) {
 
     const [summary, setSummary] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -25,16 +25,17 @@ export default function AdminDashboardPage({accessToken}) {
             setError("");
 
             try{
-                const response = await fetch(
+
+                const response = await apiFetch(
                     "/api/admin/dashboard/summary",
                     {
                         method: "GET",
-                        headers: {
-                            Authorization: `Bearer ${accessToken}`
-                        },
-                        signal: controller.signal
-                    }
+                        signal: controller.signal,
+                    },
+                    auth,
+                    setAuth
                 );
+
 
                 if (!response.ok) {
                     if (response.status === 401) {
@@ -49,10 +50,13 @@ export default function AdminDashboardPage({accessToken}) {
                 }
 
                 const data = await response.json();
-                setSummary(data);
+
+                if (!controller.signal.aborted) {
+                    setSummary(data);
+                }
 
             } catch (err) {
-                if (err.name !== "AbortError") {
+                if (!controller.signal.aborted && err.name !== "AbortError") {
                     setError(err.message);
                 }
             } finally {
@@ -86,16 +90,17 @@ export default function AdminDashboardPage({accessToken}) {
             setTrendsError("");
 
             try {
-                const response = await fetch(
+
+                const response = await apiFetch(
                     "/api/admin/dashboard/trends",
                     {
                         method: "GET",
-                        headers: {
-                            Authorization: `Bearer ${accessToken}`
-                        },
-                        signal: controller.signal
-                    }
+                        signal: controller.signal,
+                    },
+                    auth,
+                    setAuth
                 );
+
 
                 if (!response.ok) {
                     throw new Error(
@@ -135,16 +140,16 @@ export default function AdminDashboardPage({accessToken}) {
             setFunnelError("");
 
             try {
-                const response = await fetch(
+                const response = await apiFetch(
                     "/api/admin/dashboard/funnel",
                     {
                         method: "GET",
-                        headers: {
-                            Authorization: `Bearer ${accessToken}`
-                        },
-                        signal: controller.signal
-                    }
+                        signal: controller.signal,
+                    },
+                    auth,
+                    setAuth
                 );
+
 
                 if (!response.ok) {
                     throw new Error(
@@ -159,7 +164,7 @@ export default function AdminDashboardPage({accessToken}) {
                 }
 
             } catch (error) {
-                if (!controller.signal.aborted) {
+                if (!controller.signal.aborted && error.name !== "AbortError") {
                     setFunnelError(error.message);
                 }
             } finally {

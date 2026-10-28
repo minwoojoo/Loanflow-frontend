@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
+import { apiFetch } from "../../../api/apiFetch";
 import "./TermsAgreementPage.css";
 
 export default function TermsAgreementPage({
                                                accessToken,
+                                                auth,
+                                                setAuth,
                                                selectedProduct,
                                                onNext,
                                                onBack,
@@ -28,12 +31,16 @@ export default function TermsAgreementPage({
             setError("");
 
             try {
-                const response = await fetch("/api/terms", {
-                    headers: {
-                        Authorization: `Bearer ${accessToken}`,
+                const response = await apiFetch(
+                    "/api/terms",
+                    {
+                        method: "GET",
+                        signal: controller.signal,
                     },
-                    signal: controller.signal,
-                });
+                    auth,
+                    setAuth
+                );
+
 
                 if (!response.ok) {
                     throw new Error("약관 목록을 불러오지 못했습니다.");
@@ -47,7 +54,7 @@ export default function TermsAgreementPage({
                 }
 
             } catch (err) {
-                if (err.name !== "AbortError") {
+                if (!controller.signal.aborted && err.name !== "AbortError") {
                     setError(err.message);
                 }
             } finally {
@@ -75,15 +82,16 @@ export default function TermsAgreementPage({
             setTermContent("");
 
             try {
-                const response = await fetch(
+                const response = await apiFetch(
                     `/api/terms/${selectedTermId}`,
                     {
-                        headers: {
-                            Authorization: `Bearer ${accessToken}`,
-                        },
+                        method: "GET",
                         signal: controller.signal,
-                    }
+                    },
+                    auth,
+                    setAuth
                 );
+
 
                 if (!response.ok) {
                     throw new Error("약관 내용을 불러오지 못했습니다.");
@@ -96,7 +104,7 @@ export default function TermsAgreementPage({
                 }
 
             } catch (err) {
-                if (err.name !== "AbortError") {
+                if (!controller.signal.aborted && err.name !== "AbortError") {
                     setTermContent(err.message);
                 }
             } finally {

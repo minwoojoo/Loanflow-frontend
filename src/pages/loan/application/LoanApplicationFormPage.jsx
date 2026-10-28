@@ -1,8 +1,11 @@
 import { useState, useRef } from "react";
+import { apiFetch } from "../../../api/apiFetch";
 import "./LoanApplicationFormPage.css";
 
 export default function LoanApplicationFormPage({
                                                     accessToken,
+                                                    auth,
+                                                    setAuth,
                                                     applicationId,
                                                     limitResult,
                                                     draftData,
@@ -135,16 +138,17 @@ export default function LoanApplicationFormPage({
         setSaveMessage("");
 
         try {
-            const response = await fetch(
+            const response = await apiFetch(
                 `/api/loan-applications/${applicationId}`,
                 {
                     method: "PATCH",
                     headers: {
                         "Content-Type": "application/json",
-                        Authorization: `Bearer ${accessToken}`,
                     },
                     body: JSON.stringify(requestBody),
-                }
+                },
+                auth,
+                setAuth
             );
 
             if (!response.ok) {
@@ -210,7 +214,7 @@ export default function LoanApplicationFormPage({
 
         try {
             // 1. 먼저 최신 입력값 임시저장
-            // 기존 saveDraft()가 성공 시 true를 반환하도록 되어 있어야 함
+            // 임시저장 성공 시 반환된 데이터 확인
             const saved = await saveDraft(false);
 
             if (!saved) {
@@ -218,14 +222,13 @@ export default function LoanApplicationFormPage({
             }
 
             // 2. 최종 제출 API 호출
-            const response = await fetch(
+            const response = await apiFetch(
                 `/api/loan-applications/${applicationId}/submit`,
                 {
                     method: "POST",
-                    headers: {
-                        Authorization: `Bearer ${accessToken}`,
-                    },
-                }
+                },
+                auth,
+                setAuth
             );
 
             if (!response.ok) {
